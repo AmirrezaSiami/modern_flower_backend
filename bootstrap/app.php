@@ -61,6 +61,8 @@ $app->singleton(
 
 $app->configure('app.database');
 
+$app->configure('jwt');
+
 /*
 |--------------------------------------------------------------------------
 | Register Middleware
@@ -92,7 +94,9 @@ $app->configure('app.database');
 */
 
 $app->register(App\Providers\AppServiceProvider::class);
- $app->register(App\Providers\AuthServiceProvider::class);
+$app->register(App\Providers\AuthServiceProvider::class);
+$app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
+$app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 
 /*
@@ -119,7 +123,5 @@ $app->configure('cors');
 $app->middleware([
     Fruitcake\Cors\HandleCors::class,
 ]);
-
-$app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
 
 return $app;
